@@ -1,6 +1,6 @@
 define(['jQuery', 'skeleton', 'Bootstrap', './Manager', './ManagerView'],
 function($, sk, Bootstrap, Manager, ManagerView) {
-    var Liao = sk.Spa.extend({
+    var Spa = sk.Spa.extend({
         configure: function(){
             this.model = Manager;
             this.view = new ManagerView({
@@ -10,5 +10,5 @@ function($, sk, Bootstrap, Manager, ManagerView) {
         }
     });
 
-    return Liao;
+    return Spa;
 });

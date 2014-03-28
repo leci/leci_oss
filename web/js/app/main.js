@@ -1,8 +1,8 @@
-define(['./Freshin', 'JST', 'config'],
-function(Freshin, JST, config) {
+define(['./Leci', 'JST', 'config'],
+function(Leci, JST, config) {
     var appConfig = window.appConfig;
 
-    var App = new Freshin({
+    var App = new Leci({
         mode: appConfig.mode,
         JST: JST
     });

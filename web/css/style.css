@@ -365,6 +365,7 @@ button:focus.cystal-button img {
   background-color: #e6e6e6;
   *background-color: #d9d9d9;
   /* Buttons in IE7 don't get borders, so darken on hover */
+
   background-position: 0 -15px;
   -webkit-transition: background-position 0.1s linear;
   -moz-transition: background-position 0.1s linear;
@@ -468,44 +469,52 @@ button:focus.cystal-button img {
   border-left-color: #69F;
   border-left-style: solid;
   /*ie6 for dashed bug */
+
 }
 .triangle-r {
   border-right-color: #69F;
   border-right-style: solid;
   /*ie6 for dashed bug */
+
 }
 .triangle-t {
   border-top-color: #69F;
   border-top-style: solid;
   /*ie6 for dashed bug */
+
 }
 .triangle-b {
   border-bottom-color: #69F;
   border-bottom-style: solid;
   /*ie6 for dashed bug */
+
 }
 .triangle-lt {
   border-left-color: #FFF;
   border-left-style: solid;
   /*ie6 for dashed bug */
+
   border-width: 0px 0px 20px 20px;
 }
 .triangle-lb {
   border-bottom-color: #FFF;
   border-bottom-style: solid;
   /*ie6 for dashed bug */
+
   border-width: 0px 20px 20px 0px;
 }
 .triangle-rt {
   border-top-color: #FFF;
   border-top-style: solid;
   /*ie6 for dashed bug */
+
   border-width: 20px 0px 0px 20px;
 }
 .triangle-rb {
   border-right-color: #FFF;
   border-right-style: solid;
   /*ie6 for dashed bug */
+
   border-width: 20px 20px 0px 0px;
 }
 /* Sidenav for Docs
