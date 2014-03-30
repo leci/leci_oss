@@ -1,0 +1,72 @@
+<%
+    var targets = input.targets;
+%>
+
+<div id="navigtor">
+<fieldset><legend>筛选</legend>
+
+<div class="row-fluid">
+    <div class="span11 offset1">
+        <select id="target">
+        <% _.each(targets, function(target, i) { %>
+        <option value="<%= target.id %>"><%= target.name %></option>
+        <% }); %>
+        </select>
+    </div>
+</div>
+<div class="row-fluid">
+    <!--<div class="span1">-->
+        <!--<label class="inline">-->
+            <!--<bold>核心否</bold>-->
+        <!--</label>-->
+    <!--</div>-->
+    <div class="span11 offset1">
+        <label class="radio inline">
+            <input type="radio" name="caCroup" id="caAll" value="all" checked>
+            全部
+        </label>
+        <label class="radio inline">
+            <input type="radio" name="caCroup" id="caCore" value="core">
+            核心
+        </label>
+        <label class="radio inline">
+            <input type="radio" name="caCroup" id="caUncore" value="uncore">
+            非核心
+        </label>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span11 offset1">
+        <label class="radio inline">
+            <input type="radio" name="orderCroup" id="orderAlphabet" value="alphabet">
+            字母顺序
+        </label>
+        <label class="radio inline">
+            <input type="radio" name="orderCroup" id="orderBook" value="book" checked>
+            教材顺序
+        </label>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span11 offset1">
+        <label class="radio inline">
+            <input type="radio" name="ckCroup" id="ckAll" value="all">
+            全部
+        </label>
+        <label class="radio inline">
+            <input type="radio" name="ckCroup" id="ckUnchecked" value="unchecked" checked>
+            未审核
+        </label>
+        <label class="radio inline">
+            <input type="radio" name="ckCroup" id="ckChecked" value="checked">
+            已审核
+        </label>
+    </div>
+</div>
+    <div class="row-fluid">
+        <div class="span11 offset1">
+            <button class="btn btn-primary" id="filter">确定</button>
+        </div>
+    </div>
+</fieldset>
+</div>

@@ -4,11 +4,12 @@ module.exports = {
     creator: 'Henry Leu',
     secretKey: 'quick',
     mysql:{
-        host: '192.168.1.100',
+//        host: '192.168.1.100',
+        host: 'localhost',
         user: 'leci',
         password: 'leci',
         database:'word_dict',
-        port: 3306
+        port: 3316
     },
     mongo:{
         db: 'favor',

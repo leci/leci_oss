@@ -81,15 +81,35 @@ function(_, bb, $, Router) {
             }
             return this;
         },
-        doRender: function(){
-            var input = {};
+        getModelData: function(){
+            var data = {};
             if(this.model){
                 var model = _.result(this, 'model');
-                if(model.toJSON){
-                    input = model.toJSON();
-                }
+                data = this.getModelJson(model);
             }
+            return data;
+        },
+        getChildModelData: function(model, childModelId){
+            var data = {};
+            if(model){
+                var childModel = model.getChild(childModelId);
+                data = this.getModelJson(childModel||{});
+            }
+            return data;
+        },
 
+        getModelJson: function(model){
+            var json = null;
+            if(model.toJSON){
+                json = model.toJSON();
+            }
+            else{
+                json = null;
+            }
+            return json;
+        },
+        doRender: function(){
+            var input = this.getModelData();
             this.$el.html(this.evaluateTemplate( {input: input, id: this.getId()} ));
             this.afterRender();
             this.rendered = true;

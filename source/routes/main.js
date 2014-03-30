@@ -3,6 +3,7 @@ var util = require('util');
 var Thing = require('../models/Thing').model;
 var UserService = require('../services/UserService');
 var ThingService = require('../services/ThingService');
+var DictService = require('../services/DictService');
 
 module.exports = function(app) {
     var mode = app.get('env') || 'development';
@@ -21,12 +22,26 @@ module.exports = function(app) {
             UserService.loadMeta(uid, function(err, meta ){
                 user.meta = meta;
                 input.user = user;
-                res.render('layout', input);
+                res.render('dict', input);
             })
         }
     };
-    app.get('/',      indexPage);
-    app.get('/dict', indexPage);
+    var dictPage = function(req, res, next) {
+        asseton(req, res);
+        var input = {};
+        var page = {};
+        input.page = page;
+        var user = req.user;
+        page.user = user;
+        DictService.listTargets(function(err, targets ){
+            page.targets = targets;
+            console.error(input);
+            console.log(input);
+            res.render('dict', input);
+        });
+    };
+    app.get('/',      dictPage);
+    app.get('/dict', dictPage);
     app.get('/thing-:id', indexPage);
     app.get('/things-collect-(:tags)-(:stream)-(:pageStart)', indexPage);
     app.get('/things-:sort', indexPage);

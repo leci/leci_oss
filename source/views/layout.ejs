@@ -11,10 +11,11 @@
 <script>
     window.appConfig = window.appConfig || {};
     window.appConfig.mode = '<%=asset.mode%>';
+    window.page = <%-JSON.stringify(page)%>;
+
 </script>
 <script src="<%=asset.mainJs%>" data-main="<%=asset.configJs%>"></script>
 <style>
-
 .stretch-height{
     background: #EFF3F7;
     position: absolute;
@@ -31,13 +32,21 @@
     /*right: 0;*/
     /*bottom:0;*/
 }
-
-
+.tile-padding{
+    display: table-row;
+    width: 100%;
+    height: 40px;
+}
+.tile-body{
+    display: table-row;
+    width: 100%;
+    height: 100%;
+}
 </style>
 </head>
 <body>
 <header>
-    <div class="main-header navbar navbar-inverse1 navbar-fixed-top"><div class="navbar-inner"><div class="container">
+    <div class="main-header navbar navbar-inverse navbar-fixed-top"><div class="navbar-inner"><div class="container">
 
                 <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
                 <a class="btn btn-navbar" data-toggle="collapse" data-target="head-collapse">
@@ -64,7 +73,7 @@
                 <div class="nav-collapse head-collapse">
                     <ul class="nav">
                         <li class="">
-                            <a href="dict" class="link" set="forum"><i class="fa fa-book"></i> 词库管理</a>
+                            <a href="dict" set="forum"><i class="fa fa-book"></i> 词库管理</a>
                         </li>
                     </ul>
                     <ul class="nav pull-right">
@@ -111,9 +120,14 @@
 </header>
 
 <section>
+    <%-body -%>
+<!--
+    <div class="main-header-padding" ></div>
     <div class="main-frame" >
         <div data-view-id="manager" ></div>
     </div>
+-->
+
 </section>
 
 <footer>
