@@ -1,6 +1,6 @@
-define(['jQuery', 'skeleton'
+define(['jQuery', 'skeleton', './VcbEntries', './VcbEntriesView'
     ],
-function($, sk
+function($, sk, VcbEntries, VcbEntriesView
     ) {
     var NavigatorView = sk.View.extend({
         vid: 'navigator',
@@ -22,19 +22,30 @@ function($, sk
             return data;
         },
         configure: function(){
-
+            var vcbEntries = new VcbEntries();
+            this.model.addChild('vcbEntries', vcbEntries);
+            var vcbEntriesView = new VcbEntriesView({
+                model: vcbEntries
+            });
+            this.addChild(vcbEntriesView);
         },
         toFilter: function(e){
             var data = {};
             data.target = this.$('#target').val();
-            data.caCroup = this.$('input[name=caCroup]:checked').val();
-            data.orderCroup = this.$('input[name=orderCroup]:checked').val();
-            data.ckCroup = this.$('input[name=ckCroup]:checked').val();
-            alert('toFilter: ' + JSON.stringify(data));
-            var vcbEntries = this.getParent().getChild('workbench').getChild('vcb-list').model;
+            data.core = this.$('input[name=core]:checked').val();
+            data.order = this.$('input[name=order]:checked').val();
+            data.check = this.$('input[name=check]:checked').val();
+
+            var workbench = this.getParent().getChild('workbench').model;
+            var vcbEntries = this.model.getChild('vcbEntries');
             vcbEntries.fetch({
-                error: function(){console.error('error');},
-                success: function(){console.info('success');},
+                error: function(model, response, options){
+                    console.error(response);
+                },
+                success: function(model, response, options){
+                    workbench.setEntries(vcbEntries);
+                    vcbEntries.trigger('filter', response);
+                },
                 data: data
             });
         },

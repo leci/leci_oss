@@ -9,7 +9,7 @@
     <div class="span11 offset1">
         <select id="target">
         <% _.each(targets, function(target, i) { %>
-        <option value="<%= target.id %>"><%= target.name %></option>
+        <option value="<%= target.id %>" <%= target.name=='CET4' ? 'selected' : ''%>><%=target.name%></option>
         <% }); %>
         </select>
     </div>
@@ -22,15 +22,15 @@
     <!--</div>-->
     <div class="span11 offset1">
         <label class="radio inline">
-            <input type="radio" name="caCroup" id="caAll" value="all" checked>
+            <input type="radio" name="core" id="ccAll" value="all" checked>
             全部
         </label>
         <label class="radio inline">
-            <input type="radio" name="caCroup" id="caCore" value="core">
+            <input type="radio" name="core" id="ccCore" value="core">
             核心
         </label>
         <label class="radio inline">
-            <input type="radio" name="caCroup" id="caUncore" value="uncore">
+            <input type="radio" name="core" id="ccUncore" value="uncore">
             非核心
         </label>
     </div>
@@ -38,11 +38,11 @@
 <div class="row-fluid">
     <div class="span11 offset1">
         <label class="radio inline">
-            <input type="radio" name="orderCroup" id="orderAlphabet" value="alphabet">
+            <input type="radio" name="order" id="orderAlphabet" value="alphabet">
             字母顺序
         </label>
         <label class="radio inline">
-            <input type="radio" name="orderCroup" id="orderBook" value="book" checked>
+            <input type="radio" name="order" id="orderBook" value="book" checked>
             教材顺序
         </label>
     </div>
@@ -50,23 +50,28 @@
 <div class="row-fluid">
     <div class="span11 offset1">
         <label class="radio inline">
-            <input type="radio" name="ckCroup" id="ckAll" value="all">
+            <input type="radio" name="check" id="ckAll" value="all">
             全部
         </label>
         <label class="radio inline">
-            <input type="radio" name="ckCroup" id="ckUnchecked" value="unchecked" checked>
+            <input type="radio" name="check" id="ckUnchecked" value="unchecked" checked>
             未审核
         </label>
         <label class="radio inline">
-            <input type="radio" name="ckCroup" id="ckChecked" value="checked">
+            <input type="radio" name="check" id="ckChecked" value="checked">
             已审核
         </label>
     </div>
 </div>
-    <div class="row-fluid">
-        <div class="span11 offset1">
-            <button class="btn btn-primary" id="filter">确定</button>
-        </div>
+<div class="row-fluid">
+    <div class="span10 offset1">
+        <button class="btn pull-right" id="filter"><i class="fa fa-filter"></i></button>
     </div>
+</div>
 </fieldset>
+</div>
+<br>
+<br>
+<div class="row-fluid">
+<div data-view-id="vcb-list"></div>
 </div>

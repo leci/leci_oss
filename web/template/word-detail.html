@@ -1,0 +1,72 @@
+<%
+    var wd = input;
+    var sentences = wd.sentences;
+    console.log(wd);
+%>
+    <fieldset><legend><%=wd.word%></legend>
+
+        <div class="row-fluid">
+            <div class="span1">
+                <div class=""><strong>发音</strong></div>
+            </div>
+            <div class="span8">
+                <div class=""><%=wd.phoneticSymbolEn%></div>
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span1">
+                <div class=""><strong>解释</strong></div>
+            </div>
+            <div class="span8">
+                <div class=""><%=wd.briefdef%></div>
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span1">
+                <div class=""><strong>记忆法</strong></div>
+            </div>
+            <div class="span8">
+                <div class=""><%=wd.method%></div>
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span1">
+                <div class=""><strong>图片</strong></div>
+            </div>
+            <div class="span8">
+                <div class=""><%=wd.picture%></div>
+            </div>
+        </div>
+    </fieldset>
+
+
+<fieldset><legend><strong><small>例句</small></strong></legend>
+    <div class="row-fluid">
+        <div class="span12">
+            <table class="table table-condensed table-striped">
+                <caption></caption>
+                <thead>
+                <tr>
+                    <th></th><th></th><th></th>
+                </tr>
+                </thead>
+                <tbody>
+            <%_.each(sentences, function(sentence, i){%>
+            <tr>
+                <td><%= ''+(i+1)+'. ' %></td><td><%=sentence.sentence%></td>
+                <td><%= sentence.soundLocal ? '' : '无' %></td>
+            </tr>
+            <tr>
+                <td></td><td><%=sentence.sentenceChinese%></td>
+                <td></td>
+            </tr>
+            <%});%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+

@@ -40,8 +40,42 @@ module.exports = function(app) {
             res.render('dict', input);
         });
     };
+    var filterTargetWords = function(req, res, next) {
+        if(!req.query.target){
+            logger.warn('invalid query parameters for filter vocabularies');
+            res.json(200, {});
+            return;
+        }
+
+        DictService.filterTargetWords(req.query, function(err, results) {
+            if (err) {
+                logger.error(err);
+                res.json(500, err); //TODO response a json document with error info
+                return;
+            }
+            res.json(200, results);
+        });
+    };
+
+    var getWordDetail = function(req, res) {
+        var deckWordId = req.params.id;
+        DictService.getWordDetail(deckWordId, function(err, wordDetail) {
+            if (err) {
+                logger.error(err);
+                res.json(500, err); //TODO response a json document with error info
+                return;
+            }
+            logger.log(wordDetail);
+            res.json(200, wordDetail);
+        });
+    };
+
     app.get('/',      dictPage);
     app.get('/dict', dictPage);
+    app.get('/words', filterTargetWords);
+    app.get('/word/:id', getWordDetail);
+
+
     app.get('/thing-:id', indexPage);
     app.get('/things-collect-(:tags)-(:stream)-(:pageStart)', indexPage);
     app.get('/things-:sort', indexPage);
