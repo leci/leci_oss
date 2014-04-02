@@ -17,6 +17,7 @@ function($, sk) {
                 me.doRender();
                 me.setFirstRow();
             });
+            this.listenTo(this.model, 'review', this.reviewWord, this);
         },
         toSelectRow: function(e){
             var el = e.target;
@@ -33,10 +34,6 @@ function($, sk) {
             this.showWordDetail(wordId);
         },
         moveRow: function(wordId, down){
-//            if(this.lastWordId==wordId){
-//                return;
-//            }
-
             if(this.lastWordTr){
                 this.lastWordTr.removeClass('info');
             }
@@ -53,10 +50,6 @@ function($, sk) {
             }
         },
         selectRow: function(wordId, $Tr){
-            if(this.lastWordId==wordId){
-                return;
-            }
-
             if(this.lastWordTr){
                 this.lastWordTr.removeClass('info');
             }
@@ -66,7 +59,8 @@ function($, sk) {
         },
         setFirstRow: function(){
             if(this.model.length>0){
-                var id = this.model.at(0).id;
+                var entry = this.model.at(0);
+                var id = entry.id;
                 this.selectRow(id);
                 this.showWordDetail(id);
             }
@@ -74,11 +68,21 @@ function($, sk) {
                 console.warn('there are no entries to select as first row');
             }
         },
-
         showWordDetail: function(wordId) {
             var workbench = this.model.getParent().getParent().getChild('workbench');
             if(workbench){
                 workbench.pageTo(wordId);
+            }
+        },
+        reviewWord: function(wordDetail){
+            if(this.lastWordTr){
+                console.warn(wordDetail);
+                if(!wordDetail.review || wordDetail.review==0){
+                    this.lastWordTr.removeClass('success');
+                }
+                else{
+                    this.lastWordTr.addClass('success');
+                }
             }
         },
         afterRender: function() {

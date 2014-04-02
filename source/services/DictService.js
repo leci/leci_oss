@@ -59,7 +59,7 @@ Service.listTargets = function(callback) {
 };
 
 var genSqlFilterDeckWords = function(deckId, core){
-    var sql = 'SELECT id, word FROM deckworddetail WHERE deckid=' + deckId;
+    var sql = 'SELECT id, word, review FROM deckworddetail WHERE deckid=' + deckId;
     if(core=='all'){
 
     }
@@ -96,7 +96,7 @@ Service.filterTargetWords = function(query, callback) {
 };
 
 var genSqlDeckWordDetail = function(deckWordId){
-    return 'SELECT id, word, briefdef, method FROM deckworddetail WHERE id=' + deckWordId;
+    return 'SELECT id, word, briefdef, method, review FROM deckworddetail WHERE id=' + deckWordId;
 };
 var genSqlWord = function(word){
     return 'SELECT word, wordAlt, hardLevel, phoneticSymbolEn, phoneticSymbolUs, picLocal, picSource FROM words WHERE word= \''+word+'\' LIMIT 1';
@@ -215,5 +215,36 @@ Service.getWordDetail = function(deckWordId, callback) {
         });
     });
 };
+
+
+var genSqlReviewWordDetail = function(deckWordId, review){
+    return 'UPDATE deckworddetail SET review = '+review+' WHERE id=' + deckWordId;
+};
+
+Service.reviewWordDetail = function(id, review, callback) {
+    var sqlReviewWordDetail = genSqlReviewWordDetail(id, review);
+    pool.getConnection(function(err, connection) {
+        if(err){
+            logger.error(err);
+            callback(err, null);
+            return;
+        }
+
+        connection.query(sqlReviewWordDetail, function(err, rows) {
+            if(err){
+                logger.error(err);
+                callback(err, null);
+            }
+            else{
+                var result = rows.affectedRows>0;
+                callback(null, result);
+            }
+            connection.release();
+        });
+    });
+};
+
+
+
 
 module.exports = Service;

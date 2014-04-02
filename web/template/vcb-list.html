@@ -21,7 +21,7 @@
     <%
         _.each(vcbs, function(vcb, i){
     %>
-        <tr>
+        <tr class="<%=vcb.review!=0?'success':''%>">
             <td><%=vcb.word%></td><td class="hide"><%=vcb.id%></td>
         </tr>
     <%

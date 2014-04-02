@@ -57,6 +57,12 @@ module.exports = function(app) {
         });
     };
 
+
+    app.get('/',      dictPage);
+    app.get('/dict', dictPage);
+    app.get('/words', filterTargetWords);
+
+
     var getWordDetail = function(req, res) {
         var deckWordId = req.params.id;
         DictService.getWordDetail(deckWordId, function(err, wordDetail) {
@@ -69,11 +75,25 @@ module.exports = function(app) {
             res.json(200, wordDetail);
         });
     };
-
-    app.get('/',      dictPage);
-    app.get('/dict', dictPage);
-    app.get('/words', filterTargetWords);
     app.get('/word/:id', getWordDetail);
+
+    var putWordDetail = function(req, res) {
+        var deckWordId = req.params.id;
+        var update = JSON.parse(JSON.stringify(req.body));
+        console.log(update);
+        DictService.reviewWordDetail(deckWordId, update.review, function(err, result) {
+            if (err) {
+                logger.error(err);
+                res.json(500, err); //TODO response a json document with error info
+                return;
+            }
+            logger.log(result);
+            res.json(200, {
+                success: result
+            });
+        });
+    };
+    app.put('/word/:id', putWordDetail);
 
 
     app.get('/thing-:id', indexPage);

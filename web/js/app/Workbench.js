@@ -3,10 +3,13 @@ function(sk, config) {
 
     var Workbench = sk.Model.extend({
         configure: function(){
-
+            this.on('review', this.reviewWord, this);
         },
         setEntries: function(entries){
             this.entries = entries;
+
+            this.set('wordId', null);
+            this.set('wordIndex', null);
             //TODO here to set first selection
             this.trigger('reset');
         },
@@ -63,7 +66,9 @@ function(sk, config) {
             else{
                 console.warn('word index is ' + wordIndex + ', it touches the end of the entries');
             }
-
+        },
+        reviewWord: function(wordDetail){
+            this.entries.trigger('review', wordDetail);
         },
         emptyFn: function(){}
     });

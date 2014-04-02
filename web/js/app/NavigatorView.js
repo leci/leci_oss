@@ -39,6 +39,7 @@ function($, sk, VcbEntries, VcbEntriesView
             var workbench = this.getParent().getChild('workbench').model;
             var vcbEntries = this.model.getChild('vcbEntries');
             vcbEntries.fetch({
+                reset: true,
                 error: function(model, response, options){
                     console.error(response);
                 },

@@ -4,7 +4,16 @@ define(['skeleton'], function(sk) {
         urlRoot: '/word',
         idAttribute: 'id',
         configure: function(){
-
+        },
+        updateReview: function(value){
+            this.save({'review': value}, {
+                error: function(model, response, options){
+                    console.error(response);
+                },
+                success: function(model, response, options){
+                    console.info(response);
+                }
+            });
         }
     });
     return Model;
