@@ -28,7 +28,11 @@ function($, sk, VcbEntries, VcbEntriesView) {
         },
         onReviewChanged: function(model, value){
             this.getParent().model.trigger('review', model.toJSON());
+            var previous = model.previous('review');
+            this.$('button[value="' +previous+ '"]').removeClass('active');
+            this.$('button[value="' +value+ '"]').addClass('active');
         },
+
         afterRender: function() {
         }
     });

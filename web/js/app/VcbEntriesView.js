@@ -76,7 +76,6 @@ function($, sk) {
         },
         reviewWord: function(wordDetail){
             if(this.lastWordTr){
-                console.warn(wordDetail);
                 if(!wordDetail.review || wordDetail.review==0){
                     this.lastWordTr.removeClass('success');
                 }

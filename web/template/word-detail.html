@@ -2,7 +2,6 @@
     var wd = input;
     var sentences = wd.sentences;
     var noSentences = !sentences || sentences.length==0;
-        console.log(wd);
 %>
 <fieldset><legend><%=wd.word%></legend>
 
@@ -13,8 +12,10 @@
         <div class="span2">
             <div class=""><%=wd.phoneticSymbolEn%></div>
         </div>
-        <div class="span2">
+        <div class="span1">
             <i class="fa fa-volume-up fa-lg sound-play"> </i>
+        </div>
+        <div class="span8">
             <audio controls autoplay>
                 <source src="horse.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.

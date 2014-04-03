@@ -1,14 +1,9 @@
 var settings = require('../../settings');
 var redis = require('./../commons/redis');
-//var mongodb = require('./../commons/mongodb');
 
 module.exports = function(express){
     var sessionStore = null;
-    if(settings.session.storeType == 'mongo'){
-//        var MongoStore = require('connect-mongo')(express);
-//        sessionStore = new MongoStore({db: mongodb});
-    }
-    else if(settings.session.storeType == 'redis'){
+    if(settings.session.storeType == 'redis'){
         var RedisStore = require('connect-redis')(express);
         sessionStore = new RedisStore({client : redis});
     }
