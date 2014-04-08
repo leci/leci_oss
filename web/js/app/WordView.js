@@ -1,9 +1,10 @@
-define(['jQuery', 'skeleton', './VcbEntries', './VcbEntriesView'],
-function($, sk, VcbEntries, VcbEntriesView) {
+define(['jQuery', 'skeleton', './VcbEntries', './VcbEntriesView', 'Holder'],
+function($, sk, VcbEntries, VcbEntriesView, Holder) {
     var View = sk.View.extend({
         vid: 'word-detail',
         templateName: 'word-detail',
         events: {
+            'click i.player': "toPlay",
             'click button[name="review"]': "toReview"
         },
         configure: function(){
@@ -12,6 +13,10 @@ function($, sk, VcbEntries, VcbEntriesView) {
         },
         onLoad: function() {
             this.getParent().renderContent();
+        },
+        toPlay: function(e){
+            var playerId = $(e.target).attr('player');
+            this.$('#'+playerId)[0].play();
         },
         toReview: function(e){
             var v = $(e.target).val();
@@ -32,8 +37,16 @@ function($, sk, VcbEntries, VcbEntriesView) {
             this.$('button[value="' +previous+ '"]').removeClass('active');
             this.$('button[value="' +value+ '"]').addClass('active');
         },
+        afterRenderChildren: function() {
+//            Holder.run({images: "#wordPic"});
+            Holder.add_theme("bright", { background: "white", foreground: "gray", size: 12}).run();
+            console.log('afterRenderChildren');
+        },
 
         afterRender: function() {
+//            Holder.run({images: "#wordPic"});
+            Holder.add_theme("bright", { background: "white", foreground: "gray", size: 12}).run();
+            console.log('afterRender');
         }
     });
 

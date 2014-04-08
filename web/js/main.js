@@ -25,6 +25,7 @@ require.config({
         Underscore: '../../public/components/underscore/underscore',
         Backbone: '../../public/components/backbone/backbone',
         Bootstrap: '../../public/components/bootstrap/js/bootstrap',
+        Holder: '../../public/components/holderjs/holder',
         JST: '../../public/build/js/templates',
         jQueryCustom: 'jquery.custom'
     },

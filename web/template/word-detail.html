@@ -13,12 +13,14 @@
             <div class=""><%=wd.phoneticSymbolEn%></div>
         </div>
         <div class="span1">
-            <i class="fa fa-volume-up fa-lg sound-play"> </i>
+            <i class="fa fa-volume-up fa-lg player" title="朗读" player="wordAudio"> </i>
         </div>
         <div class="span8">
-            <audio controls autoplay>
+            <audio id="wordAudio" src="./public/media/7C519749DD2E71ED953FCD82D71699C1.mp3" autoplay>
+                <!--
                 <source src="horse.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
+                -->
+                您的浏览器不支持 audio 标签。
             </audio>
         </div>
     </div>
@@ -45,22 +47,24 @@
         <div class="span1">
             <div class=""><strong>图片</strong></div>
         </div>
-        <div class="span8">
-        <%if(wd.pictureUrl==null || wd.pictureUrl==''){%>
+        <div class="span5">
+            <%if(wd.pictureUrl==null || wd.pictureUrl==''){%>
             <div class="text-danger">无图片</div>
-        <%}else{%>
-            <img src="<%=wd.pictureUrl%>" class="img-polaroid media-object" data-src="holder.js/64x64">
-        <%}%>
+            <%}else{%>
+            <img id="wordPic" src1="<%=wd.pictureUrl%>" src2="./public/pic/dTa0zoyePas.jpg" class="img-polaroid media-object" data-src="holder.js/300x300" width1="300" height1="300">
+            <%}%>
         </div>
-    </div>
 
-    <div class="row-fluid">
         <div class="span1">
             <div class=""><strong>视频</strong></div>
         </div>
-        <div class="span8">
-            <div class=""><%=wd.picture%></div>
-            <img src="<%=wd.picture%>" class="img-polaroid media-object" data-src="holder.js/64x64">
+        <div class="span1">
+            <i class="fa fa-youtube-play fa-lg player" title="观看视频" player="wordVideo"> </i>
+        </div>
+        <div class="span4">
+            <video id="wordVideo" src1="<%=wd.picture%>" src="./public/media/B5E4BDE40DE3611ECC8A526E38E9ECF4.mp4" width="300" height="300"><!--TODO -->
+                您的浏览器不支持 video 标签。
+            </video>
         </div>
     </div>
 
@@ -85,7 +89,16 @@
             </tr>
             <tr>
                 <td></td><td><%=sentence.sentenceChinese%></td>
-                <td></td>
+                <td>
+                    <i class="fa fa-volume-up fa-lg player" title="朗读" player="sentenceAudio"> </i>
+                    <audio id="sentenceAudio" src="./public/media/B5E4BDE40DE3611ECC8A526E38E9ECF4.mp3">
+                        <!--
+                        <source src="horse.mp3" type="audio/mpeg">
+                        -->
+                        您的浏览器不支持 audio 标签。
+                    </audio>
+
+                </td>
             </tr>
             <%});%>
                 </tbody>
