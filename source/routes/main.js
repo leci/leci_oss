@@ -32,8 +32,6 @@ module.exports = function(app) {
         page.user = user;
         DictService.listTargets(function(err, targets ){
             page.targets = targets;
-            console.error(input);
-            console.log(input);
             res.render('dict', input);
         });
     };
@@ -66,7 +64,6 @@ module.exports = function(app) {
                 res.json(500, err); //TODO response a json document with error info
                 return;
             }
-            logger.log(wordDetail);
             res.json(200, wordDetail);
         });
     };
@@ -82,7 +79,6 @@ module.exports = function(app) {
                 res.json(500, err); //TODO response a json document with error info
                 return;
             }
-            logger.log(result);
             res.json(200, {
                 success: result
             });

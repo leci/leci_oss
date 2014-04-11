@@ -13,6 +13,7 @@ function($, sk, VcbEntries, VcbEntriesView, Holder) {
         },
         onLoad: function() {
             this.getParent().renderContent();
+            Holder.run({images: "#wordPic"});
         },
         toPlay: function(e){
             var playerId = $(e.target).attr('player');
@@ -21,15 +22,6 @@ function($, sk, VcbEntries, VcbEntriesView, Holder) {
         toReview: function(e){
             var v = $(e.target).val();
             this.model.updateReview(Number(v));
-
-//            var apiUrl = '/word/' + thingId + (liked ? '/like' : '/unlike');
-//            $.get(apiUrl, function() {
-//            })
-//                .fail(function() {
-//                    console.error('failed: ' + apiUrl);
-//                    thing.toggleLike(!liked);
-//                });
-
         },
         onReviewChanged: function(model, value){
             this.getParent().model.trigger('review', model.toJSON());
@@ -37,16 +29,7 @@ function($, sk, VcbEntries, VcbEntriesView, Holder) {
             this.$('button[value="' +previous+ '"]').removeClass('active');
             this.$('button[value="' +value+ '"]').addClass('active');
         },
-        afterRenderChildren: function() {
-//            Holder.run({images: "#wordPic"});
-            Holder.add_theme("bright", { background: "white", foreground: "gray", size: 12}).run();
-            console.log('afterRenderChildren');
-        },
-
         afterRender: function() {
-//            Holder.run({images: "#wordPic"});
-            Holder.add_theme("bright", { background: "white", foreground: "gray", size: 12}).run();
-            console.log('afterRender');
         }
     });
 
